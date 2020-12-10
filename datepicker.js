@@ -303,6 +303,7 @@ class DatePicker extends Component {
       confirmBtnTestID,
       allowFontScaling,
       locale,
+      hidePicker,
     } = this.props;
 
     const dateInputStyle = [
@@ -423,10 +424,11 @@ class DatePicker extends Component {
               </View>
             </Modal>
           )}
-          {(mode === "time" && this.state.isPicker) ||
-          (mode === "datetime" &&
-            this.state.isPicker &&
-            this.state.newDate !== "") ? (
+          {!hidePicker &&
+          ((mode === "time" && this.state.isPicker) ||
+            (mode === "datetime" &&
+              this.state.isPicker &&
+              this.state.newDate !== "")) ? (
             <DateTimePicker
               mode="time"
               value={this.state.date}
@@ -434,10 +436,11 @@ class DatePicker extends Component {
               display="clock"
             />
           ) : null}
-          {(mode === "date" && this.state.isPicker) ||
-          (mode === "datetime" &&
-            this.state.isPicker &&
-            this.state.newDate === "") ? (
+          {!hidePicker &&
+          ((mode === "date" && this.state.isPicker) ||
+            (mode === "datetime" &&
+              this.state.isPicker &&
+              this.state.newDate === "")) ? (
             <DateTimePicker
               mode="date"
               minimumDate={minDate && this.getDate(minDate)}
@@ -459,6 +462,7 @@ DatePicker.defaultProps = {
   date: "",
   // component height: 216(DatePickerIOS) + 1(borderTop) + 42(marginTop), IOS only
   height: 259,
+  hidePicker: false,
 
   // slide animation duration time, default to 300ms, IOS only
   duration: 300,
@@ -507,6 +511,7 @@ DatePicker.propTypes = {
   is24Hour: PropTypes.bool,
   getDateStr: PropTypes.func,
   locale: PropTypes.string,
+  hidePicker: PropTypes.bool,
 };
 
 export default DatePicker;
