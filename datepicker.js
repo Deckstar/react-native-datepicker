@@ -161,7 +161,7 @@ class DatePicker extends Component {
     if (typeof this.props.onDateChange === "function") {
       this.props.onDateChange(
         this.getDateStr(this.state.date),
-        this.state.date,
+        this.state.date
       );
     }
   }
@@ -173,7 +173,8 @@ class DatePicker extends Component {
       return (
         <Text
           allowFontScaling={allowFontScaling}
-          style={[Style.placeholderText, customStyles.placeholderText]}>
+          style={[Style.placeholderText, customStyles.placeholderText]}
+        >
           {placeholder}
         </Text>
       );
@@ -181,7 +182,8 @@ class DatePicker extends Component {
     return (
       <Text
         allowFontScaling={allowFontScaling}
-        style={[Style.dateText, customStyles.dateText]}>
+        style={[Style.dateText, customStyles.dateText]}
+      >
         {this.getDateStr()}
       </Text>
     );
@@ -315,7 +317,8 @@ class DatePicker extends Component {
         style={[Style.dateTouch, style]}
         underlayColor={"transparent"}
         onPress={this.onPressDate}
-        testID={testID}>
+        testID={testID}
+      >
         <View style={[Style.dateTouchBody, customStyles.dateTouchBody]}>
           {!this.props.hideText ? (
             <View style={dateInputStyle}>{this.getTitleElement()}</View>
@@ -331,26 +334,31 @@ class DatePicker extends Component {
               supportedOrientations={SUPPORTED_ORIENTATIONS}
               onRequestClose={() => {
                 this.setModalVisible(false);
-              }}>
+              }}
+            >
               <View style={{ flex: 1 }}>
                 <TouchableComponent
                   style={Style.datePickerMask}
                   activeOpacity={1}
                   underlayColor={"#00000077"}
-                  onPress={this.onPressMask}>
+                  onPress={this.onPressMask}
+                >
                   <TouchableComponent
                     underlayColor={"#fff"}
-                    style={{ flex: 1 }}>
+                    style={{ flex: 1 }}
+                  >
                     <Animated.View
                       style={[
                         Style.datePickerCon,
                         { height: this.state.animatedHeight },
                         customStyles.datePickerCon,
-                      ]}>
+                      ]}
+                    >
                       <View
                         pointerEvents={
                           this.state.allowPointerEvents ? "auto" : "none"
-                        }>
+                        }
+                      >
                         <DateTimePicker
                           value={this.state.date}
                           mode={mode}
@@ -376,14 +384,16 @@ class DatePicker extends Component {
                           Style.btnCancel,
                           customStyles.btnCancel,
                         ]}
-                        testID={cancelBtnTestID}>
+                        testID={cancelBtnTestID}
+                      >
                         <Text
                           allowFontScaling={allowFontScaling}
                           style={[
                             Style.btnTextText,
                             Style.btnTextCancel,
                             customStyles.btnTextCancel,
-                          ]}>
+                          ]}
+                        >
                           {cancelBtnText}
                         </Text>
                       </TouchableComponent>
@@ -395,13 +405,15 @@ class DatePicker extends Component {
                           Style.btnConfirm,
                           customStyles.btnConfirm,
                         ]}
-                        testID={confirmBtnTestID}>
+                        testID={confirmBtnTestID}
+                      >
                         <Text
                           allowFontScaling={allowFontScaling}
                           style={[
                             Style.btnTextText,
                             customStyles.btnTextConfirm,
-                          ]}>
+                          ]}
+                        >
                           {confirmBtnText}
                         </Text>
                       </TouchableComponent>
