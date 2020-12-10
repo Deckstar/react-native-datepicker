@@ -69,11 +69,13 @@ class DatePicker extends Component {
       return Animated.timing(this.state.animatedHeight, {
         toValue: height,
         duration: duration,
+        useNativeDriver: false,
       }).start();
     } else {
       return Animated.timing(this.state.animatedHeight, {
         toValue: 0,
         duration: duration,
+        useNativeDriver: false,
       }).start(() => {
         this.setState({ modalVisible: visible });
       });
@@ -324,8 +326,8 @@ class DatePicker extends Component {
           {!this.props.hideText ? (
             <View style={dateInputStyle}>{this.getTitleElement()}</View>
           ) : (
-            <View />
-          )}
+              <View />
+            )}
           {this._renderIcon()}
           {Platform.OS === "ios" && (
             <Modal
@@ -425,31 +427,31 @@ class DatePicker extends Component {
             </Modal>
           )}
           {!hidePicker &&
-          ((mode === "time" && this.state.isPicker) ||
-            (mode === "datetime" &&
-              this.state.isPicker &&
-              this.state.newDate !== "")) ? (
-            <DateTimePicker
-              mode="time"
-              value={this.state.date}
-              onChange={this.onTimePicked}
-              display="clock"
-            />
-          ) : null}
+            ((mode === "time" && this.state.isPicker) ||
+              (mode === "datetime" &&
+                this.state.isPicker &&
+                this.state.newDate !== "")) ? (
+              <DateTimePicker
+                mode="time"
+                value={this.state.date}
+                onChange={this.onTimePicked}
+                display="clock"
+              />
+            ) : null}
           {!hidePicker &&
-          ((mode === "date" && this.state.isPicker) ||
-            (mode === "datetime" &&
-              this.state.isPicker &&
-              this.state.newDate === "")) ? (
-            <DateTimePicker
-              mode="date"
-              minimumDate={minDate && this.getDate(minDate)}
-              maximumDate={maxDate && this.getDate(maxDate)}
-              value={this.state.date}
-              onChange={this.onDatePicked}
-              display="calendar"
-            />
-          ) : null}
+            ((mode === "date" && this.state.isPicker) ||
+              (mode === "datetime" &&
+                this.state.isPicker &&
+                this.state.newDate === "")) ? (
+              <DateTimePicker
+                mode="date"
+                minimumDate={minDate && this.getDate(minDate)}
+                maximumDate={maxDate && this.getDate(maxDate)}
+                value={this.state.date}
+                onChange={this.onDatePicked}
+                display="calendar"
+              />
+            ) : null}
         </View>
       </TouchableComponent>
     );
